@@ -11,6 +11,9 @@ import React from "react";
 import * as Icon from "react-native-feather";
 import { themeColors } from "../theme";
 import { useNavigation, useRoute } from "@react-navigation/native";
+import DishRow from "../components/DishRow";
+import CartIcon from "../components/CartIcon";
+import { StatusBar } from "expo-status-bar";
 
 const RestaurantScreen = () => {
   const { params } = useRoute();
@@ -19,6 +22,8 @@ const RestaurantScreen = () => {
 
   return (
     <View>
+      <CartIcon/>
+      <StatusBar style="light"/>
       <ScrollView>
         <View className="relative">
           <Image className="w-full h-72" source={item.image} />
@@ -61,7 +66,7 @@ const RestaurantScreen = () => {
         </View>
         <View className="pb-36 bg-white">
           <Text className="px-4 py-4 text-3xl">Menu</Text>
-          {item.dishes.map((dish,index)=><></>)}
+          {item.dishes.map((dish,index)=><DishRow item={dish} key={index}></DishRow>)}
         </View>
       </ScrollView>
     </View>
