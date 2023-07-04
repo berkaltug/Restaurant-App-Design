@@ -6,9 +6,11 @@ import { themeColors } from "../theme";
 import { featured } from "../constants";
 import * as Icon from "react-native-feather";
 import { TouchableOpacity } from "react-native";
+import { useSelector } from "react-redux";
+import { selectRestaurant } from "../slices/restaurantSlice";
 
 const DeliveryScreen = () => {
-  const restaurant = featured.restaurants[0];
+  const restaurant = useSelector(selectRestaurant);
   const navigation = useNavigation();
 
   return (
@@ -46,7 +48,10 @@ const DeliveryScreen = () => {
               Your order is on the way!
             </Text>
           </View>
-          <Image className=" h-20 w-20"source={require("../assets/images/bikeGuy2.gif")}></Image>
+          <Image
+            className=" h-20 w-20"
+            source={require("../assets/images/bikeGuy2.gif")}
+          ></Image>
         </View>
         <View
           style={{ backgroundColor: themeColors.bgColor(0.7) }}
@@ -67,10 +72,19 @@ const DeliveryScreen = () => {
           </View>
           <View className="flex-row items-center space-x-3 mr-3">
             <TouchableOpacity className="rounded-full p-2 bg-white">
-                <Icon.Phone fill={themeColors.bgColor(1)} stroke={themeColors.bgColor(1)} strokeWidth={1}/>
+              <Icon.Phone
+                fill={themeColors.bgColor(1)}
+                stroke={themeColors.bgColor(1)}
+                strokeWidth={1}
+              />
             </TouchableOpacity>
-            <TouchableOpacity onPress={()=>{navigation.navigate('Home')}} className="rounded-full p-2 bg-white">
-                <Icon.X stroke={'red'} strokeWidth={1}/>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate("Home");
+              }}
+              className="rounded-full p-2 bg-white"
+            >
+              <Icon.X stroke={"red"} strokeWidth={1} />
             </TouchableOpacity>
           </View>
         </View>
